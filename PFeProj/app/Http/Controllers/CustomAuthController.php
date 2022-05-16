@@ -174,10 +174,10 @@ class CustomAuthController extends Controller
         ->where('id_devoir',$id)
         ->where('etat',2)
         ->get();
-       // print_r($d);
-//    dd($cour);
+ 
         $rem=$rem->count();
         $nrem=$nrem->count();
+
         $nret=$nret->count();
         return view('prof.devoir.suivie')->with('id',$id)->with('id_cours',$id_cours)->with('dev',$all)->with('d',$d)->with('cour',$cour)->with('rem',$rem)->with('nrem',$nrem)->with('nret',$nret);
    
