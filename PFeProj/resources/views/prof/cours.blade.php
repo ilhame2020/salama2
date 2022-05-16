@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/cours/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/cours/components.css') }}" />
      
+    <script src="{{ asset('js/cours/bootstrap.min.js') }}" defer></script>
 
     <!-- Scripts -->
    
