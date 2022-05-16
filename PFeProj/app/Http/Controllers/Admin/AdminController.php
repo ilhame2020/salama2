@@ -24,8 +24,11 @@ class AdminController extends Controller
     
     public function ListAllProf(){       
         $profs=Professeur::with('filieres')->get();
-        $filieres=Filiere::all();
-        return view("admin.professeur",compact('profs','filieres'));
+        $filieres=Filiere::with('sections')->get();
+        $filieres2=Filiere::with('sections')->get();
+
+        // dd($filieres);
+        return view("admin.professeur",compact('profs','filieres','filieres2'));
     }
     public function SuppProf($id){
         //dd($id);

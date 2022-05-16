@@ -74,47 +74,53 @@
                 <input type="text" class="form-control col-lg-12" name="tel" >
               </div>
               <div class="col-lg-6">
-            
+                  <label for="inputAddress"><span class="text-primary">*</span>Filiére</label>
+
                         @foreach($filieres as $data)
                         <div style="margin:11px;">
-                        <input class=" form-control" style="display: inline;" type="checkbox" name="filiere" id="" value="{{ $data->id}}">{{ $data->name }} 
-                        </div>
+                        <input class="check form-control" style="display: inline; padding-bottom:0; padding-top:0;" type="checkbox" name="filiere" id="" value="{{ $data->id}}" required>{{ $data->name }} 
+                     
+                        <div class="check-cont">  
+                              <label for="inputPassword4"><span class="text-primary">*</span>Groupe  </label>
+                          
+                              <div   class="checkbox-dropdown form-control ">
+                                <span class="hida">Select</span> 
+                                <p class="multiselect"></p>
                                 
-                          <label for="inputPassword4"><span class="text-primary">*</span>Groupe  </label>
-                          <div   class="checkbox-dropdown form-control ">
-                            <span class="hida">Select</span> 
-                            <p class="multiselect"></p>
-                                  <ul class="checkbox-dropdown-list">
-                                    <li>
-                                      <label>
-                                        <input type="checkbox" value="Vejle" name="city" />Milwaukee</label>
-                                    </li>
-                                    <li>
-                                      <label>
-                                        <input type="checkbox" value="Horsens" name="city" />Denver</label>
-                                    </li>
-                              
-                                    
-                                  </ul>
-                          </div>
-                          <label for="inputPassword4"><span class="text-primary">*</span>Section </label>
-                          <div   class="checkbox-dropdown form-control ">
-                            <span class="hida">Select</span> 
-                            <p class="multiselect"></p>
-                                  <ul class="checkbox-dropdown-list">
-                                    <li>
-                                      <label>
-                                        <input type="checkbox" value="Vejle" name="city" />Milwaukee</label>
-                                    </li>
-                                    <li>
-                                      <label>
-                                        <input type="checkbox" value="Horsens" name="city" />Denver</label>
-                                    </li>
-                              
-                                    
-                                  </ul>
-                          </div>      
+                                      <ul class="checkbox-dropdown-list">
+                                      @foreach ($data->sections as $s )
+                                       @foreach ($s->groupes as $g)  
+                                        <li>
+                                          <label>
+                                            <input type="checkbox" value="Vejle" name="groupe" />{{$g->nom_groupe}}</label>
+                                        </li>
+                                        @endforeach
+                                  
+                                        @endforeach
+                                      </ul>
+                                        
+                                  
                             
+                              </div>
+                                          
+                          
+                              <label for="inputPassword4"><span class="text-primary">*</span>Section </label>
+                              <div   class="checkbox-dropdown form-control ">
+                                <span class="hida">Select</span> 
+                                <p class="multiselect"></p>
+                                      <ul class="checkbox-dropdown-list">
+                                      @foreach ($data->sections as $s )
+                                        <li>
+                                          <label>
+                                            <input type="checkbox" value="Vejle" name="city" />{{$s->nom_section}}</label>
+                                        </li>
+                                      @endforeach
+                                       
+                                        
+                                      </ul>
+                              </div>      
+                            </div>    
+                          </div>    
                                        
      
                          @endforeach  
@@ -149,19 +155,19 @@
 
                                       }
                                       });
-          
+                              var check =document.querySelectorAll('.check');
+                         
+                              check.forEach(function(c){
+                              
+                                c.addEventListener("change",function(){
+                                
+                                  c.nextElementSibling.classList.toggle("check-cont-active");
+                                });
+                              });
 
                           </script>
                 </div>
-                <div class="col-lg-6">
-                   <label ><span class="text-primary">*</span>Département  </label>
-                   <select  name="departement" class=" form-control js-example-basic-multiple form-select" >
-                    <option value="Département Informatique">Département Informatique </option>
-                    <option value="Département Electrique">Département Electrique </option>
-                   <option value="Technique de communication et comercialisation">Technique de communication et comercialisation </option>
-                    <option value="Technique de management">Technique de management </option>
-                    </select>
-                 </div>
+          
            </div>
          </div>
       </div>
@@ -266,15 +272,59 @@
                              <label for="inputAddress"><span class="text-primary">*</span>Téléphone</label>
                              <input type="text"  class="tel form-control col-lg-12" name="tel" >
                            </div>
-                              <div class="col-lg-6">
-                                <label ><span class="text-primary">*</span>Département  </label>
-                                <select  name="departement" class="dept form-control js-example-basic-multiple form-select" >
-                                 <option value="Département Informatique">Département Informatique </option>
-                                 <option value="Département Electrique">Département Electrique </option>
-                                <option value="Technique de communication et comercialisation">Technique de communication et comercialisation </option>
-                                 <option value="Technique de management">Technique de management </option>
-                                   </select>
+                           <div class="col-lg-6">
+                  <label for="inputAddress"><span class="text-primary">*</span>Filiére</label>
+
+                        @foreach($filieres2 as $data)
+                        <div style="margin:11px;">
+                          <input class="check1 form-control" style="display: inline; padding-bottom:0; padding-top:0;" type="checkbox" name="filiere" id="" value="{{ $data->id}}" required>{{ $data->name }} 
+                     
+                           <div class="check-cont">  
+                              <label for="inputPassword4"><span class="text-primary">*</span>Groupe  </label>
+                          
+                              <div   class="checkbox-dropdown1 form-control ">
+                                <span class="hida">Select</span> 
+                                <p class="multiselect1"></p>
+                                
+                                      <ul class="checkbox-dropdown-list1">
+                                      @foreach ($data->sections as $s )
+                                       @foreach ($s->groupes as $g)  
+                                        <li>
+                                          <label>
+                                            <input type="checkbox"  name="groupe" />{{$g->nom_groupe}}</label>
+                                        </li>
+                                        @endforeach
+                                  
+                                        @endforeach
+                                      </ul>
+                                        
+                                  
+                            
                               </div>
+                                          
+                          
+                              <label for="inputPassword4"><span class="text-primary">*</span>Section </label>
+                              <div   class="checkbox-dropdown1 form-control ">
+                                <span class="hida">Select</span> 
+                                <p class="multiselect1"></p>
+                                      <ul class="checkbox-dropdown-list1">
+                                      @foreach ($data->sections as $s )
+                                        <li>
+                                          <label>
+                                            <input type="checkbox" value="Vejle" name="city" />{{$s->nom_section}}</label>
+                                        </li>
+                                      @endforeach
+                                       
+                                        
+                                      </ul>
+                              </div>      
+                            </div>    
+                          </div>    
+                                       
+     
+                         @endforeach  
+                
+                </div>
                         </div>
                       </div>
                    </div>
@@ -304,6 +354,46 @@
                 modal.find('.tel').val(recipient.tel)
                 modal.find('.dept').val(recipient.departement)
               })
+
+              $(".checkbox-dropdown1").click(function () {
+                                $(this).toggleClass("is-active");
+                            });
+
+                            $(".checkbox-dropdown1 ul").click(function(e) {
+                                e.stopPropagation();
+                            });
+                            $(document).bind('click', function(e) {
+                              var $clicked1 = $(e.target);
+                              if (!$clicked1.parent().prevObject.hasClass("is-active")) 
+                              $(".checkbox-dropdown1").removeClass("is-active");
+                              });
+                              $('.checkbox-dropdown1 input[type="checkbox"]').on('click', function() {
+
+                                      var title1 = $(this).closest('.checkbox-dropdown1').find('input[type="checkbox"]').val(),
+                                        title1 = $(this).val() + ",";
+                                        console.log(title1)
+
+                                      if ($(this).is(':checked')) {
+                                        var html1 = '<span title="' + title1 + '">' + title1 + '</span>';
+                                        $('.multiselect1').append(html1);
+                                        $(".hida").hide();
+                                      } else {
+                                        $('span[title="' + title1 + '"]').remove();
+                                        var ret1 = $(".hida");
+                                        $('.checkbox-dropdown1 p').append(ret1);
+
+                                      }
+                                      });
+                              var check1 =document.querySelectorAll('.check1');
+                         
+                              check1.forEach(function(d){
+                              
+                                d.addEventListener("change",function(){
+                                
+                                  d.nextElementSibling.classList.toggle("check-cont-active");
+                                });
+                              });
+
              </script>
              
               <form action="{{route('admin.SuppProf',$prof->id)}}" method="POST" style="display: inline;" >
