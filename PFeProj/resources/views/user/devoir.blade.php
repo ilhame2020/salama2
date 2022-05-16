@@ -108,7 +108,7 @@
                         <div style="    width: 48%;
                                 text-align: center;">
                         <img id="fili" style="display:none;" class="m-4" src="{{ URL::to('filedone.png') }}"  width="200px" alt="">
-                        @if ($remis)
+                        @if ($remis->file_path!=2)
                         <a href="{{ url('storage/fichiers/'.$remis->file_path) }}" download>
                         <img id="fili"  class="m-4" src="{{ URL::to('filedone.png') }}"  width="200px" alt="">
                         </a>

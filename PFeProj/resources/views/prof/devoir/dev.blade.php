@@ -125,7 +125,7 @@
                     <div class="mt-1">
                         <x-label class="fs-t" for="email" :value="__('Contenu :')" />
                         <textarea  class=" wd block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        name="contenu" id="" cols="5" rows="5"></textarea>
+                        name="contenu" id="" cols="5" rows="5" required autofocus></textarea>
                     </div>
                     <div class="mt-1">
                         <x-label class="fs-t" for="file" :value="__('Fichier:')" />
@@ -136,7 +136,7 @@
                     <div class="mt-1">
                         <x-label class="fs-t" for="file" :value="__('Date Limite:')" />
                     
-                        <input class=" wd block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="date" name="date_limite" id="">
+                        <input  type='date'  class=" wd block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="date" name="date_limite" id="">
 
                     </div>
                     
@@ -145,8 +145,25 @@
                             {{ __('Créer') }}
                         </button>
                     @endif
-        
+
             </form>
+            <script>
+                var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1;
+                    var yyyy = today.getFullYear();
+
+                    if (dd < 10) {
+                    dd = '0' + dd;
+                    }
+
+                    if (mm < 10) {
+                    mm = '0' + mm;
+                    } 
+                        
+                    today = yyyy + '-' + mm + '-' + dd;
+                    document.getElementById("datefield").setAttribute("min", today);
+            </script>
             @if(Route::is('prof.cours.devoir.voir'))
             <div class="col col-lg-9">
             
@@ -175,13 +192,18 @@
                         <textarea  class=" wd block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         name="contenu" id="" cols="5" rows="5" readonly>{{$dev->contenu}}</textarea>
                     </div>
+                    @if ($dev->file_path)
+                  
                     <div class="mt-1">
                         <x-label class="fs-t" for="file" :value="__('Fichier:')" />
+
                         <iframe src="{{url('storage/fichiers/'.$dev->file_path)}}" frameborder="5"></iframe>
                         <a href="{{ url('storage/fichiers/'.$dev->file_path) }}" download> Cliquer pour télécharger </a>
 
 
                     </div>
+                          
+                    @endif
                     <div class="mt-1">
                         <x-label class="fs-t" for="file" :value="__('Date Limite:')" />
                     
@@ -228,12 +250,14 @@
                         <textarea  class=" wd block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         name="contenu" id="" cols="5" rows="5" >{{$dev->contenu}}</textarea>
                     </div>
+                    @if ($dev->file_path)
                     <div class="mt-1">
                         <x-label class="fs-t" for="file" :value="__('Fichier:')" />
                         <iframe src="{{url('storage/fichiers/'.$dev->file_path)}}" frameborder="5"></iframe>
                         <input class=" wd block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="file" name="file" id="">
 
                     </div>
+                    @endif
                     <div class="mt-1">
                         <x-label class="fs-t" for="file" :value="__('Date Limite:')" />
                     

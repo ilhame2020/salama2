@@ -55,6 +55,9 @@ class DevoirController extends Controller
     }
     
     public function modifier($id=0,Request $r){
+        $id_cours=devoir::where('id',$id)->value('id_cours');
+
+        $d=devoir::with('cour')->with('etudiants')->where('id',$id)->get();
         $devoir =devoir::find($id);
     
         $devoir->titre = $r->titre;
@@ -69,7 +72,7 @@ class DevoirController extends Controller
         }
         $devoir->date_limite=$r->date_limite;    
         $devoir->id_prof=Auth::guard('webprof')->id();
-        $devoir->id_cours = $id;
+        $devoir->id_cours = $id_cours;
         $devoir->save();
      
         return back()->with('success', 'Devoir bien modifié !');  
